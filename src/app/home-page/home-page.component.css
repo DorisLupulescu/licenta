@@ -1,0 +1,20 @@
+#Title {
+  color: cadetblue;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 50px;
+  font-weight: bold;
+  border: none;
+}
+
+#allOfIt {
+  padding-top: 100px;
+  border: none;
+}
+
+#GetStartedButton {
+  padding-top: 30px;
+}
+
+/* #carPhoto {
+
+} */
