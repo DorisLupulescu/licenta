@@ -7,14 +7,12 @@
 }
 
 #allOfIt {
-  padding-top: 100px;
+  padding-top: 80px;
   border: none;
+  background-color: #ebedee;
+  height: 100%;
 }
 
 #GetStartedButton {
   padding-top: 30px;
 }
-
-/* #carPhoto {
-
-} */

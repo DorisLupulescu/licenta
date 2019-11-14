@@ -1,6 +1,6 @@
 .active-pink-4 input[type="search"]:focus:not([readonly]) {
-  border: 1px solid #f48fb1;
-  box-shadow: 0 0 0 1px #f48fb1;
+  border: 1px solid #f5135e;
+  box-shadow: 0 0 0 1px #f5135e;
 }
 .active-pink-3 input[type="search"] {
   border: 1px solid #f48fb1;
@@ -12,5 +12,9 @@
 }
 
 .margintillSearch {
-  margin-right: 5px;
+  margin-right: 7px;
+}
+
+.searchBarpadTop {
+  padding-top: 30px;
 }

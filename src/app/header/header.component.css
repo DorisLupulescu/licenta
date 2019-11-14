@@ -1,0 +1,10 @@
+.navbar {
+  width: 100%;
+}
+
+.navbar-right {
+  display: inline-flex;
+  display: flex;
+  align-content: center;
+  margin-top: 13px;
+}

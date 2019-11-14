@@ -16,10 +16,20 @@ input:valid + span:after {
   color: #009000;
 }
 #allofIt {
-  padding-left: 30px;
+  align-content: flex-start;
+  margin-left: 15px;
   padding-top: 15px;
 }
 #registerButton {
-  padding-left: 150px;
-  padding-top: 80px;
+  padding-top: 30px;
+}
+
+.fa {
+  font-size: 8px;
+  position: fixed;
+  color: rgba(233, 35, 35, 0.959);
+  margin-left: 2px;
+}
+.inputmarginbottom {
+  margin-bottom: 5px;
 }
