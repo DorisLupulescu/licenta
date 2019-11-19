@@ -1,0 +1,15 @@
+.navbar-left {
+  font-size: 35px;
+}
+
+.containter-fluid {
+  margin-top: 5px;
+}
+
+.displayflex {
+  display: flex;
+}
+
+.ul {
+  list-style-type: none;
+}

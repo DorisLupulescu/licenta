@@ -10,6 +10,7 @@ import { ClientComponent } from "./client/client.component";
 import { HeaderComponent } from "./header/header.component";
 import { DropdownDirective } from "./shared/dropdown.directive";
 import { SearchPageComponent } from "./search-page/search-page.component";
+import { ClientHeaderComponent } from './client-header/client-header.component';
 
 const appRoutes: Routes = [
   { path: "", component: HomePageComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     ClientComponent,
     HeaderComponent,
     DropdownDirective,
-    SearchPageComponent
+    SearchPageComponent,
+    ClientHeaderComponent
   ],
   imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   providers: [],

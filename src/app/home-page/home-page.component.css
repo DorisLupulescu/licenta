@@ -14,5 +14,18 @@
 }
 
 #GetStartedButton {
-  padding-top: 30px;
+  margin-top: 50px;
+}
+
+.btn {
+  background-image: linear-gradient(
+    to right,
+    #304f50 3%,
+    #5f9ea0 51%,
+    #b0d3d3 100%
+  );
+  border-radius: 15px;
+  border-color: #122d2e;
+  font-size: 17px;
+  border: thin;
 }
