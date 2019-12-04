@@ -1,11 +1,18 @@
 <div class="row justify-content-center align-middle pt-5">
   <div class="col-md-12 col-sm-12 col-xs-12" id="allofIt">
-    <form>
+    <form (ngSubmit)="onLogin()">
       <div
         class="col-sm-6 col-md-6 col-xs-9 form-group col-sm-offset-1 col-xs-offset-1 col-md-offset-1"
       >
         <label for="emailLogin">Email</label>
-        <input type="email" id="emailLogin" class="form-control" required />
+        <input
+          type="email"
+          id="emailLogin"
+          class="form-control"
+          required
+          [(ngModel)]="email"
+          name="email"
+        />
         <label for="password">Password</label>
         <input
           type="password"
@@ -14,9 +21,11 @@
           minlength="5"
           required
           title="Password must be at least 5 characters"
+          [(ngModel)]="password"
+          name="password"
         />
         <div id="LoginButton">
-          <button class="btn btn-success" (click)="onLogin()">
+          <button class="btn btn-success">
             Login
           </button>
         </div>

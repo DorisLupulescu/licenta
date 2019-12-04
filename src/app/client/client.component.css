@@ -1,4 +1,28 @@
 .alignall {
-  margin-top: 100px;
-  justify-content: center;
+  margin-top: 45px;
+  /* justify-content: center; */
+  margin-left: 5px;
+}
+
+.allofit {
+  background-image: linear-gradient(to left, #fff2ff 48%, #dab7da 100%);
+  height: 100%;
+  width: 100%;
+}
+
+.aligninline {
+  display: flex;
+  margin-top: 10px;
+}
+
+.fa {
+  justify-self: center;
+}
+
+.profilepic {
+  border-radius: 70%;
+}
+
+.datacontainer {
+  border-radius: 0%;
 }

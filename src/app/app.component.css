@@ -2,3 +2,8 @@
   height: 100%;
   width: 100%;
 }
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { ClientService } from "../../assets/shared/client.service";
+import { Client } from "../client/client.model";
 
 @Component({
   selector: "app-header",
@@ -7,7 +9,9 @@ import { Router } from "@angular/router";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router) {}
+  localClientData: Client;
+
+  constructor(private router: Router, private clientservice: ClientService) {}
 
   ngOnInit() {}
 

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="containter-fluid">
+<nav class="navbar navbar-default navbar-fixed-top ">
+  <div class="containter ">
     <div class="navbar-left col-xs-4 col-sm-4">
       <i
         class="fa fa-long-arrow-left "
@@ -9,22 +9,24 @@
       ></i>
     </div>
 
-    <div class="navar-right col-sm-8 col-xs-8 ">
-      <ul class="ul">
-        <li class="dropdown" appDropdown>
-          <button type="button" class="navbar-toggle dropdown-toggle">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="">Edit Profile</a></li>
-            <li>
-              <a style="cursor: pointer;" (click)="onLogin()">Sign Out</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <div class="navbar-right col-sm-8 col-xs-8 ">
+      <div class="dropdown-new">
+        <ul class="ul">
+          <li class="dropdown" appDropdown>
+            <button type="button" class="navbar-toggle dropdown-toggle">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="">Edit Profile</a></li>
+              <li>
+                <a style="cursor: pointer;" (click)="onSignOut()">Sign Out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

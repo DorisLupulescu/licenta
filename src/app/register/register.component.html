@@ -1,30 +1,51 @@
 <div class="row">
-  <div class="col-md-12 col-sm-12 col-xs-12" id="allofIt">
-    <form>
+  <div class="col-md-12 col-sm-12 col-xs-12" id="allofIt" [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-sm-6 col-md-6 col-xs-9 form-group ">
-          <label for="firstName">First Name</label
-          ><i class="fa fa-asterisk" aria-hidden="true"></i>
-          <input
-            type="text"
-            id="firstName"
-            class="form-control inputmarginbottom"
-          />
-          <label for="lastName">Last Name</label
-          ><i class="fa fa-asterisk" aria-hidden="true"></i>
-          <input
-            type="text"
-            id="lastName"
-            class="form-control inputmarginbottom"
-          />
-          <label for="emailRegister">Email</label
-          ><i class="fa fa-asterisk" aria-hidden="true"></i>
-          <input
-            type="email"
-            id="emailRegister"
-            class="form-control inputmarginbottom"
-          />
-          <div>
+        <div
+          class="col-sm-6 col-md-6 col-xs-9"
+          *ngIf="!(authenticationService.userData | async)"
+        >
+          <div class="form-group">
+            <label for="firstName">First Name</label
+            ><i class="fa fa-asterisk" aria-hidden="true"></i>
+            <input
+              type="text"
+              id="firstName"
+              class="form-control inputmarginbottom"
+              required
+              [(ngModel)]="client.firstName"
+              name="firstName"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name</label
+            ><i class="fa fa-asterisk" aria-hidden="true"></i>
+            <input
+              type="text"
+              id="lastName"
+              class="form-control inputmarginbottom"
+              required
+              [(ngModel)]="client.lastName"
+              name="lastName"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="emailRegister">Email</label
+            ><i class="fa fa-asterisk" aria-hidden="true"></i>
+            <input
+              type="email"
+              id="emailRegister"
+              class="form-control inputmarginbottom"
+              required
+              [(ngModel)]="client.email"
+              name="email"
+            />
+          </div>
+
+          <div class="form-group">
             <label for="phone">Phone Number</label
             ><i class="fa fa-asterisk" aria-hidden="true"></i>
             <span class="validity"></span>
@@ -35,33 +56,54 @@
               required
               pattern="07[0-9]{2} [0-9]{3} [0-9]{4}"
               maxlength="10"
+              [(ngModel)]="client.phoneNumber"
+              name="phoneNumber"
             />
           </div>
-          <label for="carNumber" title="Format : e.g. TM-12-NMR"
-            >Car Number</label
-          ><i class="fa fa-asterisk" aria-hidden="true"></i>
-          <input
-            type="text"
-            id="email"
-            class="form-control inputmarginbottom"
-            title="Format : e.g. TM-12-NMR"
-          />
-          <label for="password">Password</label
-          ><i class="fa fa-asterisk" aria-hidden="true"></i>
-          <input
-            type="password"
-            id="password"
-            class="form-control inputmarginbottom"
-          />
-          <label for="confirmPassword">Confirm Password</label
-          ><i class="fa fa-asterisk" aria-hidden="true"></i>
-          <input
-            type="password"
-            id="confirmPassword"
-            class="form-control inputmarginbottom"
-          />
+
+          <div class="form-group">
+            <label for="carNumber" title="Format : e.g. TM-12-NMR"
+              >Car Number</label
+            ><i class="fa fa-asterisk" aria-hidden="true"></i>
+            <input
+              type="text"
+              id="email"
+              class="form-control inputmarginbottom"
+              title="Format : TM-12-NMR"
+              required
+              [(ngModel)]="client.carNumber"
+              name="carNumber"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label
+            ><i class="fa fa-asterisk" aria-hidden="true"></i>
+            <input
+              type="password"
+              id="password"
+              class="form-control inputmarginbottom"
+              required
+              [(ngModel)]="client.password"
+              name="password"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label
+            ><i class="fa fa-asterisk" aria-hidden="true"></i>
+            <input
+              type="password"
+              id="confirmPassword"
+              class="form-control inputmarginbottom"
+              required
+              [(ngModel)]="password"
+              name="confirmPassword"
+            />
+          </div>
+
           <div id="registerButton">
-            <button class="btn btn-success" (click)="onRegistered()">
+            <button class="btn btn-success" type="submit">
               Register
             </button>
           </div>

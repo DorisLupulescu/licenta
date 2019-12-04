@@ -4,14 +4,23 @@
     <p id="Title">Parking</p>
     <div id="carPhoto" class="align-middle align-self-center">
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Araco9.gif"
+        src="../../assets/shared/HomePageCar.gif"
         alt="Car"
         style="max-height: 200px; max-width: 200px; padding: 5px 5px 5px 5px; border: none;"
       />
     </div>
 
-    <div id="GetStartedButton">
+    <div
+      id="GetStartedButton"
+      *ngIf="!(authenticationService.userData | async)"
+    >
       <button type="button" class="btn btn-info" (click)="onLoadLogin()">
+        Get Started
+      </button>
+    </div>
+
+    <div id="GetStartedButton" *ngIf="authenticationService.userData | async">
+      <button type="button" class="btn btn-info" (click)="onLoadPage()">
         Get Started
       </button>
     </div>

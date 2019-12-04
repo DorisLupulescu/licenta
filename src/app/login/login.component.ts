@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthenticationService } from "src/assets/shared/authentication.service";
 
 @Component({
   selector: "app-login",
@@ -7,12 +8,19 @@ import { Router } from "@angular/router";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router) {}
+  email: string;
+  password: string;
+  constructor(
+    private router: Router,
+    public authenticationServer: AuthenticationService
+  ) {}
 
   ngOnInit() {}
 
   onLogin() {
-    this.router.navigate(["/search-page"]);
+    this.authenticationServer.SignIn(this.email, this.password);
+    this.email = "";
+    this.password = "";
   }
 
   onRegister() {
