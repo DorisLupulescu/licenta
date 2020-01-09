@@ -62,7 +62,6 @@ export class SearchPageComponent implements OnInit, AfterViewInit {
     this.map.addListener("click", event => {
       this.marker.setPosition(event.latLng);
       this.map.panTo(event.latLng);
-
       this.geocoder.geocode({ location: event.latLng }, (results, status) => {
         if (status == google.maps.GeocoderStatus.OK) {
           console.log(results[0]);
@@ -73,7 +72,6 @@ export class SearchPageComponent implements OnInit, AfterViewInit {
         }
       });
     });
-
     // this.map.addListener("bounds_changed", () => {
     //   this.searchBox.setBounds(this.map.getBounds());
     // });
