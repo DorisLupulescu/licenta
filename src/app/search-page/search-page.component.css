@@ -18,3 +18,11 @@
 .searchBarpadTop {
   margin-top: 100px;
 }
+
+.searchbar {
+  margin-top: 30px;
+  border-radius: 20%;
+}
+/* .all {
+  background-color: rgb(248, 239, 252);
+} */

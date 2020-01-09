@@ -1,17 +1,33 @@
 <div class="allofit">
   <app-client-header></app-client-header>
   <div class="row alignall">
-    <div class="col-xs-8 col-sm-8 datacontainer">
-      <img
-        src="../assets/shared/default-avatar.jpg"
-        alt="ProfilePic"
-        class="profilepic"
-        style="max-height: 115px; max-width: 130px ;  margin-right: 3px ;"
-      />
+    <div class="col-xs-8 col-sm-8 ">
+      <div *ngIf="!profilepic">
+        <img
+          src="../assets/shared/default-avatar.jpg"
+          alt="ProfilePic"
+          class="profilepic"
+          style="max-height: 115px; max-width: 130px ;  margin-right: 3px ;"
+        />
+      </div>
+      <div *ngIf="profilepic">
+        <img
+          src="{{ profilepic }}"
+          alt="ProfilePic"
+          class="profilepic"
+          style="max-height: 115px; max-width: 130px ;  margin-right: 3px ;"
+        />
+      </div>
+
       <form>
         <div class="aligninline">
           <i class="fa fa-paperclip" aria-hidden="true"></i>
-          <input type="file" value="Choose Photo" />
+          <input
+            type="file"
+            value="Choose Photo"
+            id="profilepic"
+            (change)="updatePhoto($event)"
+          />
         </div>
       </form>
 

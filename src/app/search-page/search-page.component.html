@@ -1,23 +1,31 @@
-<app-header></app-header>
-<div class="row justify-content-center allign-middle">
-  <div
-    class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 searchBarpadTop"
-  >
-    <form class="active-pink-3 active-pink-4 mb-4 appDropdown">
-      <div class="searchLocationAlign">
-        <i class="fa fa-search fa-2x margintillSearch" aria-hidden="true"></i>
-        <input
-          type="search"
-          class="form-control dropdown-toggle "
-          placeholder="Search parking"
-          aria-label="Search"
-        />
-        <ul class="dropdown-menu">
-          <li>
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-          </li>
-        </ul>
-      </div>
-    </form>
+<div class="all">
+  <app-header></app-header>
+  <div class="row justify-content-center allign-middle">
+    <div
+      class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 searchBarpadTop"
+    >
+      <form class="active-pink-3 active-pink-4 mb-4 appDropdown">
+        <div class="searchLocationAlign">
+          <i class="fa fa-search fa-2x margintillSearch" aria-hidden="true"></i>
+          <input
+            type="text"
+            class="form-control controls "
+            placeholder="Search parking"
+            aria-label="Search"
+            #searchBar
+          />
+          <ul class="dropdown-menu">
+            <li>
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+    <div
+      class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 searchbar"
+    >
+      <div #map style="width:100%;height:400px"></div>
+    </div>
   </div>
 </div>

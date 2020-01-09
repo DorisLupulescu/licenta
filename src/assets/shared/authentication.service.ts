@@ -3,7 +3,6 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { Observable } from "rxjs";
 import { ClientService } from "./client.service";
 import { Router } from "@angular/router";
-
 @Injectable({
   providedIn: "root"
 })
@@ -39,6 +38,10 @@ export class AuthenticationService {
         alert("Something went wrong: " + err.message);
         this.router.navigate(["/login"]);
       });
+  }
+
+  shomeuser() {
+    return this.angularFireAuth.auth.currentUser.uid;
   }
 
   SignOut() {

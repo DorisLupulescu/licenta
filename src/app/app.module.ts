@@ -20,6 +20,7 @@ import { environment } from "../environments/environment";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AuthenticationService } from "src/assets/shared/authentication.service";
+import { AgmCoreModule } from "@agm/core";
 
 const appRoutes: Routes = [
   { path: "", component: HomePageComponent },
@@ -50,6 +51,10 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyAu_Pme3wekQK77ClD3uRIBGlW1vdrRDUw",
+      libraries: ["places"]
+    }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule

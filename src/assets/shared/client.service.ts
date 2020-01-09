@@ -2,6 +2,7 @@ import { Client } from "../../app/client/client.model";
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable, from } from "rxjs";
+import { AuthenticationService } from "./authentication.service";
 
 @Injectable({
   providedIn: "root"
@@ -11,11 +12,15 @@ export class ClientService {
 
   clientsRef: AngularFireList<Client> = null;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(
+    private db: AngularFireDatabase,
+    private authenticationService: AuthenticationService
+  ) {
     this.clientsRef = db.list(this.dbPath);
   }
 
   createClient(client: Client): void {
+    client.imagePath = "../assets/shared/default-avatar.jpg";
     this.clientsRef.push(client);
   }
 
@@ -33,5 +38,11 @@ export class ClientService {
 
   deleteAll(): Promise<void> {
     return this.clientsRef.remove();
+  }
+
+  getCurrentUser() {
+    let currentuseruid = this.authenticationService.shomeuser();
+    console.log(this.db.object(`Clients/${currentuseruid}`));
+    return this.db.object(`Clients/${currentuseruid}`);
   }
 }
