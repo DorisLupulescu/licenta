@@ -1,13 +1,13 @@
-<div class="allofit">
-  <app-client-header></app-client-header>
-  <div class="row alignall">
-    <div class="col-xs-8 col-sm-8 ">
+<app-client-header></app-client-header>
+<div class="alignall">
+  <div class="firstRow">
+    <div class="col-xs-3 col-sm-3 col-lg-3 profilePicContainer">
       <div *ngIf="!profilepic">
         <img
           src="../assets/shared/default-avatar.jpg"
           alt="ProfilePic"
           class="profilepic"
-          style="max-height: 115px; max-width: 130px ;  margin-right: 3px ;"
+          style="max-height: 130px; max-width: 130px; margin-right: 3px;"
         />
       </div>
       <div *ngIf="profilepic">
@@ -15,25 +15,30 @@
           src="{{ profilepic }}"
           alt="ProfilePic"
           class="profilepic"
-          style="max-height: 115px; max-width: 130px ;  margin-right: 3px ;"
+          style="max-height: 130px; max-width: 130px; margin-right: 3px;"
         />
       </div>
 
-      <form>
-        <div class="aligninline">
-          <i class="fa fa-paperclip" aria-hidden="true"></i>
-          <input
-            type="file"
-            value="Choose Photo"
-            id="profilepic"
-            (change)="updatePhoto($event)"
-          />
-        </div>
-      </form>
-
-      <div>
-        <!-- <p>{{ clientData.firstName }}</p> -->
+      <div class="aligninline">
+        <label htmlFor="profilepic">
+          <button class="btn btn-primary" (click)="photoInput.click()">
+            Upload Photo
+          </button>
+        </label>
+        <input
+          type="file"
+          value="Choose Photo"
+          id="profilepic"
+          class="inputPhoto"
+          #photoInput
+          (change)="updatePhoto($event)"
+        />
       </div>
+    </div>
+    <div class="col-xs-8 col-sm-8 col-lg-8 personalDetails">
+      <!-- <p>{{ clientData.firstName }}</p> -->
+      <h3>Personal Details</h3>
+      <p>Name:potato</p>
     </div>
   </div>
 </div>

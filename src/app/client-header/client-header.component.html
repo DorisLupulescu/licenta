@@ -1,32 +1,32 @@
-<nav class="navbar navbar-default navbar-fixed-top ">
-  <div class="containter ">
-    <div class="navbar-left col-xs-4 col-sm-4">
-      <i
-        class="fa fa-long-arrow-left "
-        aria-hidden="true"
-        (click)="onBackToSearch()"
-        style="cursor: pointer;"
-      ></i>
-    </div>
+<nav class="navbar">
+  <div class="col-xs-4 col-sm-4 col-lg-4">
+    <i
+      class="fa fa-long-arrow-left"
+      aria-hidden="true"
+      (click)="onBackToSearch()"
+      style="cursor: pointer;"
+    ></i>
+  </div>
 
-    <div class="navbar-right col-sm-8 col-xs-8 ">
-      <div class="dropdown-new">
-        <ul class="ul">
-          <li class="dropdown" appDropdown>
-            <button type="button" class="navbar-toggle dropdown-toggle">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="">Edit Profile</a></li>
-              <li>
-                <a style="cursor: pointer;" (click)="onSignOut()">Sign Out</a>
-              </li>
-            </ul>
+  <div class="col-sm-8 col-xs-8 col-lg-6">
+    <ul class="ul">
+      <li class="dropdown" appDropdown>
+        <button
+          type="button"
+          role="button"
+          class="navbar-toggle dropdown-toggle"
+        >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="">Edit Profile</a></li>
+          <li>
+            <a style="cursor: pointer;" (click)="onSignOut()">Sign Out</a>
           </li>
         </ul>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </nav>

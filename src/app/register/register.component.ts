@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ClientService } from "../../assets/shared/client.service";
+import { ClientService } from "../services/client.service";
 import { Client } from "../client/client.model";
-import { AuthenticationService } from "src/assets/shared/authentication.service";
+import { AuthenticationService } from "src/app/services/authentication.service";
 
 @Component({
   selector: "app-register",

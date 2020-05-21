@@ -1,11 +1,11 @@
-import { Client } from "../../app/client/client.model";
+import { Client } from "../client/client.model";
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database";
 import { Observable, from } from "rxjs";
 import { AuthenticationService } from "./authentication.service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ClientService {
   private dbPath = "/Clients";
@@ -40,9 +40,9 @@ export class ClientService {
     return this.clientsRef.remove();
   }
 
-  getCurrentUser() {
+   getCurrentUser() {
     let currentuseruid = this.authenticationService.shomeuser();
     console.log(this.db.object(`Clients/${currentuseruid}`));
-    return this.db.object(`Clients/${currentuseruid}`);
+    if (currentuseruid) return this.db.object(`Clients/${currentuseruid}`);
   }
 }

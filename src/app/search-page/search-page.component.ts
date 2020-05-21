@@ -4,90 +4,103 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  NgZone
+  NgZone,
 } from "@angular/core";
-import { AuthenticationService } from "src/assets/shared/authentication.service";
+import { AuthenticationService } from "src/app/services/authentication.service";
 import {} from "googlemaps";
-import { MapsAPILoader } from "@agm/core";
+import { MapsAPILoader, AgmCoreModule } from "@agm/core";
+import { FormControl } from "@angular/forms";
+import { ApiService } from "../services/api.service";
+import { ModalModule, ModalComponent } from "angular-custom-modal";
 
 @Component({
   selector: "app-search-page",
   templateUrl: "./search-page.component.html",
-  styleUrls: ["./search-page.component.css"]
+  styleUrls: ["./search-page.component.css"],
 })
 export class SearchPageComponent implements OnInit, AfterViewInit {
-  @ViewChild("map", { static: true }) mapElement: ElementRef;
-  @ViewChild("searchBar", { static: true }) searchBar: HTMLInputElement;
-  map: google.maps.Map;
-  coordinates = new google.maps.LatLng(45.7473215, 21.2266142);
+  // @ViewChild("map", { static: true }) mapElement: ElementRef;
+  @ViewChild("searchBar", { static: true }) public searchBar: ElementRef;
+  @ViewChild("parkingDetails", { static: true })
+  public parkingModal: ModalComponent;
   geocoder = new google.maps.Geocoder();
-  //searchBox = new google.maps.places.SearchBox(this.searchBar);
-  predictions = [];
-  origin = this.coordinates;
+  destination = new google.maps.DirectionsRenderer();
+  facilities;
+  radius = 1000;
+  searchParking = true;
+
+  latitude = 45.7473215;
+  longitude = 21.2266142;
+  chosenLocation = true;
 
   address: string;
-  zoom: number;
+  zoom: number = 14;
 
-  mapOptions: google.maps.MapOptions = {
-    center: this.coordinates,
-    zoom: 13,
-    clickableIcons: true,
-    mapTypeControl: true
-  };
-
-  marker = new google.maps.Marker({
-    position: this.coordinates,
-    map: this.map,
-    optimized: false,
-    draggable: true,
-    crossOnDrag: true,
-    clickable: true,
-    label: "Facultatea de Automatica si Calculatoare"
-  });
+  public searchControl: FormControl;
 
   constructor(
     public authenticationService: AuthenticationService,
     private mapsApiLoader: MapsAPILoader,
-    private ngzone: NgZone
+    private ngzone: NgZone,
+    private apiService: ApiService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAddress(this.latitude, this.longitude);
+    // this.searchControl = new FormControl();
+  }
 
   ngAfterViewInit() {
-    console.log(this.searchBar);
-    // this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-    //   this.searchBar
-    // );
-    this.mapInitialize();
-    this.map.addListener("click", event => {
-      this.marker.setPosition(event.latLng);
-      this.map.panTo(event.latLng);
-      this.geocoder.geocode({ location: event.latLng }, (results, status) => {
-        if (status == google.maps.GeocoderStatus.OK) {
-          console.log(results[0]);
-          if (results[0]) {
-            this.marker.setTitle(results[0].formatted_address);
-            this.marker.setLabel(results[0].formatted_address);
-          }
+    this.mapsApiLoader.load().then(() => {
+      var autocomplete = new google.maps.places.Autocomplete(
+        this.searchBar.nativeElement,
+        {
+          types: [],
+          componentRestrictions: {
+            country: "RO",
+          },
+          bounds: new google.maps.LatLngBounds(
+            new google.maps.LatLng(45.741892, 21.15163),
+            new google.maps.LatLng(45.75372, 21.226788)
+          ),
+          strictBounds: true,
         }
+      );
+
+      autocomplete.addListener("place_changed", () => {
+        this.ngzone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (
+            typeof place.geometry === "undefined" ||
+            place.geometry === null
+          ) {
+            return;
+          }
+
+          //set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 18;
+          this.getAddress(this.latitude, this.longitude);
+        });
       });
     });
-    // this.map.addListener("bounds_changed", () => {
-    //   this.searchBox.setBounds(this.map.getBounds());
-    // });
   }
 
   shomeuser() {
     this.authenticationService.shomeuser();
   }
 
-  mapInitialize() {
-    this.map = new google.maps.Map(
-      this.mapElement.nativeElement,
-      this.mapOptions
-    );
-    this.marker.setMap(this.map);
-  }
+  // mapInitialize() {
+  //   this.map = new google.maps.Map(
+  //     this.mapElement.nativeElement,
+  //     this.mapOptions
+  //   );
+  //   this.marker.setMap(this.map);
+  // }
 
   getAddress(latitude, longitude) {
     this.geocoder.geocode(
@@ -95,7 +108,7 @@ export class SearchPageComponent implements OnInit, AfterViewInit {
       (results, status) => {
         if (status === "OK") {
           if (results[0]) {
-            this.zoom = 12;
+            this.zoom = 18;
             this.address = results[0].formatted_address;
           } else {
             window.alert("No results found");
@@ -103,5 +116,36 @@ export class SearchPageComponent implements OnInit, AfterViewInit {
         }
       }
     );
+    this.apiService.getApiData(latitude, longitude).subscribe((data: any) => {
+      this.facilities = data.facilities.facility;
+      console.log(this.facilities);
+    });
+  }
+
+  getModalLocation(latitude, longitude) {
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.chosenLocation = true;
+
+    this.getAddress(this.latitude, this.longitude);
+    this.parkingModal.close();
+  }
+
+  onChoseLocation(event) {
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
+
+    this.chosenLocation = true;
+    this.getAddress(this.latitude, this.longitude);
+    // this.geocoder.geocode(
+    //   { location: { lat: this.latitude, lng: this.longitude } },
+    //   (results, status) => {
+    //     if (status == google.maps.GeocoderStatus.OK) {
+    //       if (results[0]) {
+    //         this.address = results[0].formatted_address;
+    //       }
+    //     }
+    //   }
+    // );
   }
 }

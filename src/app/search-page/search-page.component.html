@@ -1,31 +1,89 @@
-<div class="all">
-  <app-header></app-header>
-  <div class="row justify-content-center allign-middle">
-    <div
-      class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 searchBarpadTop"
-    >
-      <form class="active-pink-3 active-pink-4 mb-4 appDropdown">
-        <div class="searchLocationAlign">
-          <i class="fa fa-search fa-2x margintillSearch" aria-hidden="true"></i>
-          <input
-            type="text"
-            class="form-control controls "
-            placeholder="Search parking"
-            aria-label="Search"
-            #searchBar
-          />
-          <ul class="dropdown-menu">
-            <li>
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-            </li>
-          </ul>
+<app-header></app-header>
+<div class="alignContent">
+  <div class="active-pink-3 active-pink-4 searchLocationAlign form-group">
+    <i class="fa fa-search fa-2x margintillSearch" aria-hidden="true"></i>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search parking"
+      aria-label="Search"
+      #searchBar
+    />
+    <ul class="dropdown-menu">
+      <li>
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+      </li>
+    </ul>
+  </div>
+  <div class="mapModal">
+    <modal #parkingDetails>
+      <ng-template #modalHeader>
+        <h4 class="parkingtitle">Nearby parkings</h4>
+      </ng-template>
+      <ng-template #modalBody>
+        <div *ngFor="let item of facilities">
+          <div class="details">
+            <a
+              style="cursor: pointer; font-size: 20px; color: cadetblue;"
+              (click)="
+                getModalLocation(
+                  item.position.latitude,
+                  item.position.longitude
+                )
+              "
+            >
+              {{ item.name }}
+            </a>
+            <p *ngIf="item.address.street">Street: {{ item.address.street }}</p>
+            <p *ngIf="item.facilityAvailability.spacesTotal">
+              Parking spots: {{ item.facilityAvailability.spacesTotal }}
+            </p>
+            <p *ngIf="item.open24x7">Open 24/7: {{ item.open24x7 }}</p>
+            <p>
+              Pricing: {{ item.facilityAvailability.pricing.price[0].amount }}
+              {{ item.facilityAvailability.pricing.price[0].currency }}/{{
+                item.facilityAvailability.pricing.price[0].textRepresentation[0]
+                  .text[0]
+              }}
+            </p>
+            <p>
+              Conditions:
+              {{
+                item.facilityAvailability.pricing.price[0].textRepresentation[0]
+                  .text[1]
+              }}
+            </p>
+          </div>
         </div>
-      </form>
-    </div>
-    <div
-      class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 searchbar"
+      </ng-template>
+    </modal>
+  </div>
+  <button type="button" class="btn btn-info" (click)="parkingDetails.open()">
+    Details
+  </button>
+  <div>
+    <agm-map
+      [latitude]="latitude"
+      [longitude]="longitude"
+      [zoom]="zoom"
+      (mapClick)="onChoseLocation($event)"
     >
-      <div #map style="width:100%;height:400px"></div>
-    </div>
+      <agm-marker
+        [latitude]="latitude"
+        [longitude]="longitude"
+        *ngIf="chosenLocation"
+        [markerDraggable]="true"
+      ></agm-marker>
+      <agm-circle
+        [latitude]="latitude"
+        [longitude]="longitude"
+        *ngIf="chosenLocation"
+        [radius]="radius"
+        [fillColor]="black"
+        [fillOpacity]="0.1"
+      ></agm-circle>
+    </agm-map>
+
+    <h6>Address : {{ address }}</h6>
   </div>
 </div>

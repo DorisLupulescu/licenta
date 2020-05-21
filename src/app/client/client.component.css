@@ -1,11 +1,15 @@
 .alignall {
-  margin-top: 45px;
-  /* justify-content: center; */
-  margin-left: 5px;
+  /* margin-top: 45px;
+   justify-content: center; 
+  margin-left: 5px; */
+  background-image: linear-gradient(to left, #fff2ff70 48%, #dab7da1e 100%);
+  height: 100%;
+  width: 100%;
+  padding: 3% 3% 3% 3%;
 }
 
 .allofit {
-  background-image: linear-gradient(to left, #fff2ff 48%, #dab7da 100%);
+  background-image: linear-gradient(to left, #fff2ff73 48%, #dab7da44 100%);
   height: 100%;
   width: 100%;
 }
@@ -25,4 +29,39 @@
 
 .datacontainer {
   border-radius: 0%;
+}
+
+.profilePicContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 10px 10px 10px;
+  margin-right: 20px;
+  background-color: rgba(139, 0, 139, 0.021);
+}
+
+.inputPhoto {
+  display: none;
+}
+
+.btn-primary {
+  background-color: #dab7da81;
+  border-color: #dab7da81;
+}
+
+.btn-primary:hover {
+  background-color: #dab7da;
+  border-color: #dab7da;
+}
+
+.firstRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.personalDetails {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 10px 10px;
+  background-color: rgba(139, 0, 139, 0.021);
 }
